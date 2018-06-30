@@ -2,5 +2,6 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/calligraffitti</item>
+        <item>@font/sevillana</item>
     </array>
 </resources>
