@@ -112,6 +112,7 @@
         android:background="@color/deep_purple_500"
         android:text="Dont have an acoount yet? Sign Up!"
         android:textColor="#ffffff"
+        android:onClick="signup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

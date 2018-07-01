@@ -50,4 +50,9 @@ public class loginActivity extends AppCompatActivity
                     }
                 });
     }
+    public void signup(View view)
+    {
+        Intent i=new Intent(loginActivity.this,signupActivity.class);
+        startActivity(i);
+    }
 }
