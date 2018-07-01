@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "241740510198",
+    "firebase_url": "https://faithoverflow-92d4c.firebaseio.com",
+    "project_id": "faithoverflow-92d4c",
+    "storage_bucket": "faithoverflow-92d4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241740510198:android:4e73a01ffa132451",
+        "android_client_info": {
+          "package_name": "com.example.acer.faithoverflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241740510198-il2jv049fuhb587jquh2cph5j6ua08t4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW6beO4lIK2o17ONhHepO1kmu9yEHX738"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

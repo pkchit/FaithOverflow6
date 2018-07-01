@@ -1,48 +1,53 @@
 package com.example.acer.faithoverflow;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class loginActivity extends AppCompatActivity implements View.OnClickListener
+public class loginActivity extends AppCompatActivity
 {
-    private String username;
-    private String password;
+    private EditText txtEmailLogin;
+    private EditText txtPwd;
+    private FirebaseAuth firebaseAuth;
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
-        Button login =findViewById(R.id.button);
-        login.setOnClickListener(this);
-        Button signup=findViewById(R.id.button2);
-        signup.setOnClickListener(this);
-        TextView fp=findViewById(R.id.textView2);
-        fp.setOnClickListener(this);
+        txtEmailLogin = (EditText) findViewById(R.id.email);
+        txtPwd = (EditText) findViewById(R.id.editText);
+        firebaseAuth = FirebaseAuth.getInstance();
     }
-    @Override
-    public void onClick(View view)
-    {
-        int i=view.getId();
-        switch (i)
-        {
-            case R.id.button:
-                EditText un=findViewById(R.id.username);
-                username=un.getText().toString();
-                EditText pass=findViewById(R.id.editText);
-                password=pass.getText().toString();
 
-                break;
-            case R.id.button2:
-                Intent i1 = new Intent(loginActivity.this, signupActivity.class);
-                startActivity(i1);
-                break;
-            case R.id.textView2:
-                break;
-        }
+    public void Login_Click(View v) {
+        final ProgressDialog progressDialog = ProgressDialog.show(loginActivity.this, "Please wait...", "Proccessing...", true);
+
+        (firebaseAuth.signInWithEmailAndPassword(txtEmailLogin.getText().toString(), txtPwd.getText().toString()))
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(loginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(loginActivity.this, MainActivity.class);
+                            i.putExtra("Email", firebaseAuth.getCurrentUser().getEmail());
+                            startActivity(i);
+                        } else {
+                            Log.e("ERROR", task.getException().toString());
+                            Toast.makeText(loginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                });
     }
 }
