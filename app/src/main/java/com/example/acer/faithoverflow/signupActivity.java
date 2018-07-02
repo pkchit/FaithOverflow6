@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class signupActivity extends AppCompatActivity {
     private EditText txtEmailAddress;
-    private EditText txtPassword;
+    private EditText txtPassword, txtPassword2;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -29,29 +29,33 @@ public class signupActivity extends AppCompatActivity {
         setContentView(R.layout.signup_layout);
         txtEmailAddress = (EditText) findViewById(R.id.editText3);
         txtPassword = (EditText) findViewById(R.id.editText4);
+        txtPassword2=findViewById(R.id.editText5);
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public void Signup_Click(View v) {
+        if(txtPassword.getText().toString().equals(txtPassword2.getText().toString())) {
+            final ProgressDialog progressDialog = ProgressDialog.show(signupActivity.this, "Please wait...", "Processing...", true);
+            (firebaseAuth.createUserWithEmailAndPassword(txtEmailAddress.getText().toString(), txtPassword.getText().toString()))
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressDialog.dismiss();
 
-        final ProgressDialog progressDialog = ProgressDialog.show(signupActivity.this, "Please wait...", "Processing...", true);
-        (firebaseAuth.createUserWithEmailAndPassword(txtEmailAddress.getText().toString(), txtPassword.getText().toString()))
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+                            if (task.isSuccessful()) {
+                                Toast.makeText(signupActivity.this, "Registration successful", Toast.LENGTH_LONG).show();
+                                Intent i = new Intent(signupActivity.this, loginActivity.class);
+                                startActivity(i);
+                            } else {
+                                Log.e("ERROR", task.getException().toString());
+                                registrationUnsuccessful("Registration Unsuccessful");
 
-                        if (task.isSuccessful()) {
-                            Toast.makeText(signupActivity.this, "Registration successful", Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(signupActivity.this, loginActivity.class);
-                            startActivity(i);
-                        } else {
-                            Log.e("ERROR", task.getException().toString());
-                            registrationUnsuccessful("Registration Unsuccessful");
-
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else
+            registrationUnsuccessful("Passwords dont match");
     }
     private void registrationUnsuccessful(String message)
     {
