@@ -61,9 +61,12 @@ public class signupActivity extends AppCompatActivity {
                 .setPositiveButton("try again", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        recreate();
+                        Intent m = new Intent(signupActivity.this, signupActivity.class);
+                        finish();
+                        startActivity(m);
                     }
                 })
+                .setCancelable(false)
                 .show();
 
     }
