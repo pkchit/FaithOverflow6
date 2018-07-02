@@ -1,6 +1,8 @@
 package com.example.acer.faithoverflow;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -45,9 +47,24 @@ public class signupActivity extends AppCompatActivity {
                             startActivity(i);
                         } else {
                             Log.e("ERROR", task.getException().toString());
-                            Toast.makeText(signupActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            registrationUnsuccessful("Registration Unsuccessful");
+
                         }
                     }
                 });
+    }
+    private void registrationUnsuccessful(String message)
+    {
+        new AlertDialog.Builder(this)
+                .setTitle("OOPS!!")
+                .setMessage(message)
+                .setPositiveButton("try again", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        recreate();
+                    }
+                })
+                .show();
+
     }
 }
