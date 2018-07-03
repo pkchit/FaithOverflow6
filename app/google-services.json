@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "241740510198-a28hvlnpl2cfs54lkm2n2qsvka1p1l5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.acer.faithoverflow",
+            "certificate_hash": "0e02b7a6b4e565d01fef89bae78fa21bebcadab7"
+          }
+        },
+        {
           "client_id": "241740510198-il2jv049fuhb587jquh2cph5j6ua08t4.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241740510198-il2jv049fuhb587jquh2cph5j6ua08t4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
