@@ -6,6 +6,8 @@
         <item name="colorPrimary">#DE2323</item>
         <item name="colorPrimaryDark">#DE2323</item>
         <item name="colorAccent">#FDA501</item>
+        <item name="android:colorBackground">#ffffff</item>
+        <item name="android:textColorPrimary">#000000</item>
     </style>
 
     <!--<style name="LogInAppTheme" parent="Theme.AppCompat.Light.NoActionBar">

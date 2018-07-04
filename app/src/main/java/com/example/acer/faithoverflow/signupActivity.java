@@ -26,15 +26,15 @@ public class signupActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
         setContentView(R.layout.signup_layout);
-        txtEmailAddress = (EditText) findViewById(R.id.editText3);
-        txtPassword = (EditText) findViewById(R.id.editText4);
-        txtPassword2=findViewById(R.id.editText5);
+        txtEmailAddress =  findViewById(R.id.Email);
+        txtPassword =  findViewById(R.id.password);
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public void Signup_Click(View v) {
-        if(txtPassword.getText().toString().equals(txtPassword2.getText().toString())) {
+
             final ProgressDialog progressDialog = ProgressDialog.show(signupActivity.this, "Please wait...", "Processing...", true);
             (firebaseAuth.createUserWithEmailAndPassword(txtEmailAddress.getText().toString(), txtPassword.getText().toString()))
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -54,9 +54,8 @@ public class signupActivity extends AppCompatActivity {
                         }
                     });
         }
-        else
-            registrationUnsuccessful("Passwords dont match");
-    }
+
+
     private void registrationUnsuccessful(String message)
     {
         new AlertDialog.Builder(this)
